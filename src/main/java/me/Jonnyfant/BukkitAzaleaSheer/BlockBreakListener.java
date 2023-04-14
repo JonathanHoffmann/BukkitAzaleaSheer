@@ -32,36 +32,35 @@ public class BlockBreakListener implements Listener {
         }
     }
 
+    /*
     @EventHandler
     public void onBlockDispense(BlockDispenseEvent event) {
         Bukkit.broadcastMessage("Block: " + event.getBlock().getType() + " Stack " + event.getItem().toString());
         if (event.getItem().getType().equals(Material.SHEARS)) {
             //weird stuff that needs to be done to get the Block the Dispenser is facing
             Dispenser d = (Dispenser) event.getBlock().getState().getData();
-            Location l = event.getBlock().getLocation();
-            double oldx = l.getX();
-            double oldy = l.getY();
-            double oldz = l.getZ();
-            double newx = oldx + d.getFacing().getModX();
-            double newy = oldy + d.getFacing().getModY();
-            newy += 0.5;
-            double newz = oldz + d.getFacing().getModZ();
-            Bukkit.broadcastMessage("x " + oldx + ", " + newx);
-            Bukkit.broadcastMessage("y " + oldy + ", " + newy);
-            Bukkit.broadcastMessage("z " + oldz + ", " + newz);
+            Block target = event.getBlock().getRelative(d.getFacing());
+            Bukkit.broadcastMessage("Harvesting " + target.getType());
+            target.setType(Material.AIR);
+            Bukkit.broadcastMessage("Position: " + target.getLocation().toString());
 
-            l.setX(l.getX() + d.getFacing().getModX());
-            l.setX(l.getY() + d.getFacing().getModY());
-            l.setX(l.getZ() + d.getFacing().getModZ());
-            Block sheeredBlock = l.getBlock();
-            Bukkit.broadcastMessage("Harvesting " + sheeredBlock.getType());
-            sheeredBlock.setType(Material.GOLD_BLOCK);
-            Bukkit.broadcastMessage("Position: " + l.toString());
-
-            if (sheerBlock(sheeredBlock)) {
+            if (sheerBlock(target)) {
                 handleDurability(event.getItem());
                 event.setCancelled(true);
             }
+        }
+    }
+    */
+
+    //test version
+    @EventHandler
+    public void onBlockDispense(BlockDispenseEvent event) {
+        Bukkit.broadcastMessage("Block: " + event.getBlock().getType() + " Stack " + event.getItem().toString());
+        if (event.getItem().getType().equals(Material.SHEARS)) {
+            //weird stuff that needs to be done to get the Block the Dispenser is facing
+            Dispenser d = (Dispenser) event.getBlock().getState().getData();
+            Block target = event.getBlock().getRelative(d.getFacing());
+            target.breakNaturally(event.getItem());
         }
     }
 
