@@ -1,5 +1,5 @@
-name: BukkitAzaleaSheer
-main: me.Jonnyfant.BukkitAzaleaSheer.BukkitAzaleaSheer
-author: Jonnyfant
-version: 1.1
+name: AzaleaSheer
+main: me.JonathanHoffmann.AzaleaSheer.AzaleaSheer
+author: Jonathan Hoffmann
+version: ${plugin.version}
 api-version: 1.18

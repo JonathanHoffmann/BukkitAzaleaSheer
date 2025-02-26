@@ -1,4 +1,4 @@
-package me.Jonnyfant.BukkitAzaleaSheer;
+package me.JonathanHoffmann.AzaleaSheer;
 
 import java.util.Random;
 
@@ -22,7 +22,7 @@ public class BlockBreakListener implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         Player p = event.getPlayer();
-        //https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockBreakEvent.html
+        // https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockBreakEvent.html
         if (p.getInventory().getItemInMainHand().getType().equals(Material.SHEARS)) {
             if (sheerBlock(event.getBlock())) {
                 event.setDropItems(false);
@@ -79,4 +79,3 @@ public class BlockBreakListener implements Listener {
         return is;
     }
 }
-
